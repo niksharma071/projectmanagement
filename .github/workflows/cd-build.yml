@@ -20,4 +20,4 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             cd ~/projectmanagement
             npm install
-            pm2 restart project-api
+            pm2 restart index
