@@ -6,6 +6,7 @@ import userrouteer from "./routes/user_route.js"
 import cookieParser from "cookie-parser"
 import projectRouter from "./routes/projectRoute.js"
 import taskRouter from "./routes/taskRoute.js";
+import morgan from 'morgan';
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
@@ -18,7 +19,7 @@ app.use(cors({
     allowedHeaders: ["Authorization", "Content-Type"]
 
 }))
-
+app.use(morgan('dev'));
 app.use("/api/v1/healthcheck",healthcheckroute)
 app.use("/api/v1/auth",userrouteer)
 app.use("/api/v1/projects/",projectRouter)
