@@ -1,0 +1,21 @@
+name: CI - Build & Check
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24' # Matches your EC2 server
+
+      - name: Install Dependencies
+        run: npm ci
+        

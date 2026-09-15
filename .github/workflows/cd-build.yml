@@ -1,0 +1,22 @@
+name: CD - Deploy to AWS
+
+on:
+  push:
+    branches: [ "main" ] # This triggers ONLY when code is merged or pushed to main
+
+jobs:
+  deploy-to-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect to AWS and Deploy
+        # We use a pre-built GitHub Action specifically for SSH connections
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AWS_EC2_IP }}      
+          username: ubuntu
+          key: ${{ secrets.AWS_SSH_KEY }}      
+          script: |
+            cd ~/projectmanagement
+            git pull origin main
+            npm install
+            pm2 restart project-api
