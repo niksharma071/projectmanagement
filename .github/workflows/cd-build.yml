@@ -19,6 +19,7 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             cd ~/projectmanagement
-            git pull origin main
+            git fetch --all
+            git reset --hard origin/main
             npm install
             pm2 restart index
